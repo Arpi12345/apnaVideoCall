@@ -12,8 +12,10 @@ import CallEndIcon from '@mui/icons-material/CallEnd';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare';
 import ChatIcon from '@mui/icons-material/Chat';
+import { useNavigate } from "react-router-dom";
 const server_url = process.env.REACT_APP_SOCKET_URL || window.location.origin;
 console.log("Socket URL:", server_url);
+
 
 var connections = {};
 const peerConfigConnections = {
@@ -25,6 +27,7 @@ const peerConfigConnections = {
 export default function VideoMeetComponent() {
   var socketRef = useRef();
   let socketIdRef = useRef();
+  const navigate = useNavigate();
   let localVideoRef = useRef();
   let [VideoAvailable, setVideoAvailable] = useState(true);
   let [audioAvailable, setAudioAvailable] = useState(true);
@@ -362,7 +365,7 @@ let handleEndCall = () =>{
     let tracks = localVideoRef.current.srcObject.getTracks();
     tracks.forEach((track) => track.stop())
   }catch(e){console.log(e)}
- window.location.href = "/home";
+ navigate("/home");
 }
 
   return (
