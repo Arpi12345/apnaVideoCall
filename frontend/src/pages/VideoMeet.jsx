@@ -12,7 +12,8 @@ import CallEndIcon from '@mui/icons-material/CallEnd';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare';
 import ChatIcon from '@mui/icons-material/Chat';
-const server_url = process.env.REACT_APP_SOCKET_URL;
+const server_url = process.env.REACT_APP_SOCKET_URL || window.location.origin;
+console.log("Socket URL:", server_url);
 
 var connections = {};
 const peerConfigConnections = {
