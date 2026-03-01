@@ -8,8 +8,7 @@ import { useCallback } from "react";
 export  const  AuthContext = createContext(null);
 
 const client = axios.create({
-    baseURL: "http://localhost:8000/api/v1/users",
-
+    baseURL: `${process.env.REACT_APP_API_URL}/api/v1/users`,
 });
 
 client.interceptors.request.use((config) => {
