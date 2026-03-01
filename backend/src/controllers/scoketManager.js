@@ -7,7 +7,7 @@ let timeOnline = {}
  export const  connectToSocket= (server) => {
     const io = new Server(server, {
       cors:{
-         origin: "*",
+         origin: "https://apnavideocallfrontend-4dtx.onrender.com",
          methods: ["GET", "POST"],
          allowedHeaders: ["*"],
          credentials:true

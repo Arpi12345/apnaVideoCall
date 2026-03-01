@@ -12,8 +12,7 @@ import CallEndIcon from '@mui/icons-material/CallEnd';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare';
 import ChatIcon from '@mui/icons-material/Chat';
-
-const server_url = "http://localhost:8000";
+const server_url = process.env.REACT_APP_SOCKET_URL;
 
 var connections = {};
 const peerConfigConnections = {
@@ -199,7 +198,10 @@ let addMessage = (data, sender, socketIdSender) =>{
 
 }
 let connectToSocketServer = () =>{
-  socketRef.current = io.connect(server_url)
+    console.log("Connecting to socket:", server_url);
+ socketRef.current = io(server_url, {
+  transports: ["websocket"],
+});
   socketRef.current.on('signal', gotMessageFromServer);
   socketRef.current.on("connect", () =>{
     socketRef.current.emit("join-call", window.location.href)
